@@ -17,6 +17,11 @@ clientRest = Twitter::REST::Client.new do |config|
   config.access_token_secret = "x"
 end
 
+#warm-up
+topics = ["coffee", "tea"]
+clientStreaming.filter(track: topics.join(",")) do |object|
+  puts object.text if object.is_a?(Twitter::Tweet)
+end
 
 
 #j'envoie un tweet à mes compagnons de groupe :)
